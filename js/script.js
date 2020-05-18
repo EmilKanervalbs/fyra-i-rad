@@ -15,6 +15,8 @@ const winBox = document.getElementById("winBox");
 //förbestämda positioner man ska kolla för att se om någon har vunnit
 const winPos = [[-1, -2, -3], [-8, -16, -24], [-7, -14, -21], [-6, -12, -18], [1, 2, 3], [8, 16, 24], [7, 14, 21], [6, 12, 18]];
 
+const aiCheck = [3, 2, 4, 1, 5, 0, 6]; //förutbestämd ordning som AI:n ska checka i
+
 //sätta variabler
 
 var gameOver = false;
@@ -192,10 +194,6 @@ function play(column) {
     
   }
 
-
-
-
-
 }
 
 
@@ -232,13 +230,10 @@ function HasWon(pos) {
   //array som bara innehåller antal korrekta i varje riktning "winDirection"
   let winDir = [0, 0, 0, 0, 0, 0, 0, 0];
 
-  //for loop som går igenom alla winPos för att kolla i alla riktningar
-  for (let i = 0; i < winPos.length; i++) 
+  for (let i = 0; i < winPos.length; i++) //for loop som går igenom alla winPos för att kolla i alla riktningar
   {
-    // console.log(winPos[i].length);
 
-    //ytterligare for loop som kollar varje riktning
-    for (let j = 0; j < winPos[i].length; j++) 
+    for (let j = 0; j < winPos[i].length; j++) //ytterligare for loop som kollar varje riktning
     {
 
       //variabel för att slippa räkna ut varje gång senare
@@ -338,13 +333,19 @@ function ai() {
     n = "red";
   }
 
+  let checkCol = 0;
 
   for (let z = 0; z < width; z++) { //loopar genom alla kolumner
     let pos = 0;
 
+    checkCol = aiCheck[z];
+
+
     for (let i = height - 1; i >= 0; i--) { //hittar högsta fria position i varje kolumn
 
-      pos = i * width + z; 
+      pos = i * width + checkCol; 
+
+      console.log(z + ": " + pos);
 
       if (board[pos].className == "gameSquare") { //kollar om positionen den hittade är tom
         break; //om den är det så går den vidare till nästa
@@ -353,7 +354,7 @@ function ai() {
     
     }
 
-    if (board[pos].className != "gameSquare") { //om den valda positionen inte är tom, eftersom loopen inte kan ge resultat
+    if (board[pos].className != "gameSquare") { //om den valda positionen inte är tom, eftersom loopen inte kan kolla om den är utanför
       continue;
     }
 
@@ -367,20 +368,22 @@ function ai() {
     let a = true;
     let b = true;
 
-    //for loop som går igenom alla winPos för att kolla i alla riktningar
-    for (let i = 0; i < winPos.length; i++) 
+    
+    for (let i = 0; i < winPos.length; i++) //for loop som går igenom alla winPos för att kolla i alla riktningar
     {
+
       a = true; //variabler som kontrollerar om den kollar rätt eller fel färg
       b = true;
-      // console.log(winPos[i].length);
+      
 
       //ytterligare for loop som kollar varje riktning
       for (let j = 0; j < winPos[i].length; j++) 
       {
         
 
-        //variabel för att slippa räkna ut varje gång senare
-        let checkPos = pos + winPos[i][j];
+        
+        let checkPos = pos + winPos[i][j]; //variabel för att slippa räkna ut checkPos varje gång
+
 
         //block nedan kollar efter att den inte är helt ute och cyklar när den letar
         //dvs att om den är för nära en kant så skulle en horisontell eller diagnoal hoppa till fel kolumn och rad
@@ -448,7 +451,7 @@ function ai() {
       }
 
       if (length >= 4) {
-        counter = z + 1;
+        counter = aiCheck[z] + 1;
       }
       
         //lägg till counterlength
@@ -457,8 +460,13 @@ function ai() {
     
     if (longestcolx < longest) 
     {
-      longestcol = z + 1;
+      longestcol = aiCheck[z] + 1;
       longestcolx = longest;
+    }
+
+    if (turn < 2) {
+      play (Math.floor(Math.random() * 3) + 13);
+      return;
     }
 
 
