@@ -63,6 +63,8 @@ function createGame() {
 
     turn = 0;
     gameOver = false;
+
+    document.getElementById("buttonRow").className = "redButton";
   }
 
   console.log("game elements created");
@@ -175,11 +177,10 @@ function play(column) {
   }
 
   if (turn % 2 == 0) {
-    document.getElementById("buttonRow").classList.add("redButton");
-    document.getElementById("buttonRow").classList.remove("blueButton");
+    document.getElementById("buttonRow").className = "redButton";
   } else {
-    document.getElementById("buttonRow").classList.remove("redButton");
-    document.getElementById("buttonRow").classList.add("blueButton");
+    document.getElementById("buttonRow").className = "blueButton";
+
   }
 
   if (AI && turn % 2 == 1) {
@@ -305,7 +306,7 @@ function HasWon(pos) {
 }
 
 
-
+//lägg till unfavourable variabel, om längden < 6 - height eller nåt 
 
 
 function ai() {
@@ -503,7 +504,7 @@ göra så att den inte ser longest om det inte går att läga 4, dvs att den är
 göra så att det finns en funktion som letar upp det ideella stället att placera på, reukrsion blir möjligt
 
 
-gör så att det är rött eller blått i multiplayer där uppe och att när man hovrar så går det ner.
+
 
 
 
