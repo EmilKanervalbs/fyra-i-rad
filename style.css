@@ -1,0 +1,118 @@
+#gameWrapper {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+#menuWrapper {
+    text-align: center;
+    width: fit-content;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+
+#menuWrapper button {
+    font-size: 20pt;
+    padding: 10px;
+    width: 8em;
+    margin-bottom: 100px;
+}
+
+/* body {
+    background-image: url("https://cdn.discordapp.com/attachments/700680755210354758/702816243882655744/3384223.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+} */
+
+#title {
+    text-align: center;
+    font-size: 66px;
+    margin: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+#gameZone {
+    display: grid;
+    width: fit-content;
+    padding: 1em;
+    grid-template-columns: 6em 6em 6em 6em 6em 6em 6em;
+    grid-template-rows: 6em 6em 6em 6em 6em 6em;
+    
+
+    column-gap: 1em;
+    row-gap: 1em;
+
+    background-color: black;
+
+    color: white;
+
+}
+
+.gameSquare {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+#buttonRow {
+    display: grid;
+    grid-template-columns: 6em 6em 6em 6em 6em 6em 6em;
+    column-gap: 1em;
+    margin-bottom: 1em;
+    padding: 0 1em;
+    height: 1em;
+}
+
+.red :only-child {
+    background-color: #f00;
+}
+
+.blue :only-child {
+    background-color: #08F;
+}
+
+.red :only-child, .blue :only-child {
+    height: 100%;
+    width: 100%;
+    border-radius: 3em;
+}
+
+.checked {
+    background-color: yellow;
+}
+
+#winBox {
+    position: absolute;
+    left: calc(50% - 11em - 2px);
+    top: calc(86px + 17.6em);
+    width: calc(22em - 20px);
+    height: 12em;
+
+    background-color: #FFF;
+    border-color: #000;
+
+    border: 2px;
+    border-style: solid;
+    text-align: center;
+    padding: 10px;
+    border-radius: 1em;
+}
+
+#winBox button {
+    font-size: 25px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+#winTitle {
+    font-size: 40pt;
+}
+
+
+#test:hover {
+    padding-top: 20px;
+}

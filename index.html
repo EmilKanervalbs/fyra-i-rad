@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Fyra i rad</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link type="text/css" rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+
+    
+    <h1 id="title">
+      Fyra i Rad
+    </h1>
+
+    <div id="menuWrapper">
+      <button onclick="startGame(1)"> Singleplayer </button>
+      <br>
+      <button onclick="startGame(2)"> Multiplayer </button>
+
+    </div>
+
+
+    <div id="gameWrapper" class="hidden">
+      <div id="buttonRow">
+        <button onclick="play(1)"> add 1 </button>
+        <button onclick="play(2)"> add 2 </button>
+        <button onclick="play(3)"> add 3 </button>
+        <button onclick="play(4)"> add 4 </button>
+        <button onclick="play(5)"> add 5 </button>
+        <button onclick="play(6)"> add 6 </button>
+        <button onclick="play(7)"> add 7 </button>
+      </div>
+      <div id="gameZone">
+
+      </div>
+      <button onclick="ai()"> run ai once </button>
+      <div id="winBox" class="hidden">
+        <div id="winTitle">
+          x
+        </div>
+        <div id="winText">
+          <!-- hejsan -->
+
+        </div>
+         <br>
+         <button onclick="endGame()"> Main Menu </button> 
+        </div>
+
+      
+    </div>
+
+    <div id="test">
+      test
+    </div>
+
+
+  </body>
+  <script src="./js/script.js"></script>
+</html>
