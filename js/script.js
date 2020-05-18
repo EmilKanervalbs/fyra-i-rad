@@ -26,6 +26,10 @@ var AI = false;
 var AIblock = false;
 
 
+
+
+
+
 // ok gör så att ai lägger till 10 så den vet att man ska igga skiten
 
 
@@ -74,7 +78,7 @@ function startGame(x) {
     AI = false;
   }
 
-  menuWrapper.classList.add("hidden");
+  menu.classList.add("hidden");
   gameWrapper.classList.remove("hidden");
 
 }
@@ -168,6 +172,14 @@ function play(column) {
 
   }
 
+  if (turn % 2 == 0) {
+    document.getElementById("buttonRow").classList.add("redButton");
+    document.getElementById("buttonRow").classList.remove("blueButton");
+  } else {
+    document.getElementById("buttonRow").classList.remove("redButton");
+    document.getElementById("buttonRow").classList.add("blueButton");
+  }
+
   if (AI && turn % 2 == 1) {
     AIblock = true;
 
@@ -179,6 +191,10 @@ function play(column) {
     }, AItimer);
     
   }
+
+
+
+
 
 }
 
@@ -444,6 +460,7 @@ function ai() {
       longestcol = z + 1;
       longestcolx = longest;
     }
+
 
 
 

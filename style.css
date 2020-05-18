@@ -64,7 +64,25 @@
     column-gap: 1em;
     margin-bottom: 1em;
     padding: 0 1em;
-    height: 1em;
+    height: 6em;
+}
+
+#buttonRow button {
+    opacity: 0;
+    border: none;
+    border-radius: 50%;
+}
+
+#buttonRow button:hover{
+    opacity: 1;
+}
+
+.redButton button {
+    background-color: #f00;
+}
+
+.blueButton button {
+    background-color: #08F;
 }
 
 .red :only-child {
@@ -100,6 +118,7 @@
     text-align: center;
     padding: 10px;
     border-radius: 1em;
+
 }
 
 #winBox button {
