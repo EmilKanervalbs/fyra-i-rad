@@ -48,7 +48,7 @@
 
     background-color: black;
 
-    color: white;
+    color: #FFF0;
 
 }
 
@@ -73,18 +73,31 @@
     border-radius: 50%;
     height: 6rem;
     font-size: 300%;
+    /* background-color: #0000; */
+    padding: 0;
 }
 
-#buttonRow button:hover{
+.button {
+    border-radius: 50%;
+    height:100%;
+    width: 100%;
+
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    transition: transform 75ms ease-in-out;
+}
+
+#buttonRow button:hover .button{
     opacity: 1;
-    margin-top: 2rem;
+    transform: translate(0, 2rem);
 }
 
-.redButton button {
+.redButton button .button {
     background-color: #f00;
 }
 
-.blueButton button {
+.blueButton button .button {
     background-color: #08F;
 }
 
@@ -94,12 +107,22 @@
 
 .blue :only-child {
     background-color: #08F;
+
 }
+
 
 .red :only-child, .blue :only-child {
     height: 100%;
     width: 100%;
     border-radius: 3em;
+
+    /*animations*/
+    animation-name: place;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in;
+    /*transform: translate(20px, 20px);
+    transition: transform 200ms ease-in-out;*/
+    
 }
 
 .checked {
@@ -134,3 +157,9 @@
     font-size: 40pt;
 }
 
+@keyframes place {
+    0% {
+        transform: translate(0px, -1000px);
+    }
+    100% {transform: translate(0px, 0px);}
+}

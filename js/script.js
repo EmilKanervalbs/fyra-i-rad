@@ -17,27 +17,17 @@ const winPos = [[-1, -2, -3], [-8, -16, -24], [-7, -14, -21], [-6, -12, -18], [1
 
 const aiCheck = [3, 2, 4, 1, 5, 0, 6]; //förutbestämd ordning som AI:n ska checka i
 
-//sätta variabler
+//sätter olika variabler som används
 
-var gameOver = false;
+var gameOver = false; //håller koll på om spelet är över eller inte
 
 var turn = 0; //variabel för att hålla koll på rundorna
 
-var AI = false;
+var AI = false; //om ai är på eller inte
 
-var AIblock = false;
-
-
+var AIblock = false; //om det är ai:ns tur eller inte
 
 
-
-
-// ok gör så att ai lägger till 10 så den vet att man ska igga skiten
-
-
-// createGame();
-
-// startGame(2);
 
 //skapa spelområdet
 function createGame() {
