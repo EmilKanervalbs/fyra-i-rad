@@ -95,7 +95,11 @@ function GameOver(winner) {
   document.getElementById("winTitle").innerHTML = winTitle;
   document.getElementById("winText").innerHTML = winMessage;
 
-  winBox.classList.remove("hidden");
+  setTimeout(() => {
+    winBox.classList.remove("hidden");
+  }, 1000);
+
+
   
 
 }
@@ -424,8 +428,8 @@ function ai() {
       }
 
       if (length >= 4) {
-        play(z + 11);
-        console.log(p + " " + z + 1 + " WIN");
+        play(aiCheck[z] + 11);
+        console.log(p + " " + (aiCheck[z] + 1) + " WIN");
         return;
       }
       
