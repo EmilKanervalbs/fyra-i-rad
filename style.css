@@ -148,6 +148,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     background-color: yellow;
 }
 
+/*
 #winBox {
     position: absolute;
     left: calc(50% - 11em - 2px);
@@ -165,20 +166,51 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     border-radius: 1em;
 
 }
+*/
+
+#winBox {
+    position: absolute;
+    text-align: center;
+    width: calc(25rem - 4px);
+    border: 2px solid black;
+    border-radius: 1em;
+    background-color: #FFF;
+
+    top: 6rem;
+    left: calc(50% - 12.5rem - 2px);
+
+    animation-name: winBox-enter;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-duration: 2s;
+}
 
 #winBox button {
-    font-size: 25px;
-    margin-top: 30px;
+    font-size: 2rem;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
 #winTitle {
     font-size: 40pt;
+    margin-top: 10px;
+}
+
+#winText {
+    font-size: 1.25rem;
 }
 
 @keyframes place {
     0% {
         transform: translate(0px, -1000px);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+}
+
+@keyframes winBox-enter {
+    0% {
+        transform: translate(0px, -30rem);
     }
     100% {
         transform: translate(0px, 0px);

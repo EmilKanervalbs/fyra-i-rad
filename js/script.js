@@ -82,14 +82,24 @@ function GameOver(winner) {
   gameOver = true;
   let winTitle = winner.toUpperCase() + " won";
   let winMessage = "";
+  
+  document.getElementById("buttonRow").className = "";
+
 
   if (winner == "tie") {
     winMessage = "No one won, bruh"
     winTitle = "TIE";
   } else {
-    winMessage = "Congrats!";
+    winMessage = "Well done!";
     winTitle = winner.toUpperCase() + " WON";
 
+  }
+
+  if (AI && winner == "blue") {
+    winMessage = ":(";
+    winTitle = "YOU LOST";
+  } else if (AI && winner == "red") {
+    winTitle = "YOU WON";
   }
 
   document.getElementById("winTitle").innerHTML = winTitle;
@@ -169,6 +179,9 @@ function play(column) {
     }
 
   }
+
+
+  if (gameOver) return;
 
   if (turn % 2 == 0) {
     document.getElementById("buttonRow").className = "redButton";
