@@ -72,9 +72,20 @@ function startGame(x) {
     AI = false;
   }
 
-  menu.classList.add("hidden");
-  gameWrapper.classList.remove("hidden");
+  menu.classList.add("animOut");
+  
 
+  setTimeout(() => {
+    gameWrapper.classList.add("animIn");
+    gameWrapper.classList.remove("hidden");
+    menu.classList.add("hidden");
+    menu.classList.remove("animOut");
+    setTimeout(() => {
+      gameWrapper.classList.remove("animIn");
+  
+    }, 1050);
+  }, 950);
+  
 }
 
 function GameOver(winner) {
@@ -116,9 +127,23 @@ function GameOver(winner) {
 
 
 function endGame() {
-  gameWrapper.classList.add("hidden");
-  menuWrapper.classList.remove("hidden");
+  gameWrapper.classList.add("animOut");
+  // winBox.classList.add("animOut");
   winBox.classList.add("hidden");
+
+
+  setTimeout(() => {
+    gameWrapper.classList.add("hidden");
+    gameWrapper.classList.remove("animOut");
+    // winBox.classList.remove("animOut");
+    menuWrapper.classList.remove("hidden");
+    menuWrapper.classList.add("animIn");
+    setTimeout(() => {
+      menuWrapper.classList.remove("animIn");
+    }, 1050);
+
+  }, 950);
+  
 }
 
 

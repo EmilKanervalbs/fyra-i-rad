@@ -1,3 +1,7 @@
+body {
+    overflow: hidden;
+}
+
 #gameWrapper {
     margin: 0 auto;
     width: fit-content;
@@ -199,6 +203,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     font-size: 1.25rem;
 }
 
+.animOut {
+    animation-name: out-down;
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    animation-duration: 1000ms;
+}
+
+.animIn {
+    animation-name: in-up;
+    animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation-duration: 1000ms;
+}
+
 @keyframes place {
     0% {
         transform: translate(0px, -1000px);
@@ -216,3 +232,26 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         transform: translate(0px, 0px);
     }
 }
+
+@keyframes out-down {
+    0% {
+        transform: translate(0px, 0px);
+    }
+    100% {
+        transform: translate(0px, 100vh);
+    }
+    150% {
+        transform: translate(0px, 100vh);
+    }
+}
+
+
+@keyframes in-up {
+    0% {
+        transform: translate(0px, 100vh);
+    }
+    100% {
+        transform: translate(0px, 0px);
+    }
+    
+}   
