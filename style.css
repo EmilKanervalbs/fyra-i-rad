@@ -1,10 +1,35 @@
+html {
+    font-size: 14px;
+}
+
 body {
     overflow: hidden;
+    background-color: #8FF;
+    font-family: arial;
 }
 
 #gameWrapper {
     margin: 0 auto;
     width: fit-content;
+    margin-top: 1rem;
+}
+
+#menuButton {
+    text-align: center;
+    padding: 1rem;
+}
+
+#menuButton button {
+    width: 15rem;
+
+    font-size: 2em;
+    height: 4rem;
+
+    border: none;
+    border-radius: 1.5rem;
+
+    background-color: #FFF;
+
 }
 
 #menuWrapper {
@@ -15,10 +40,21 @@ body {
 }
 
 #menuWrapper button {
-    font-size: 20pt;
-    padding: 10px;
-    width: 8em;
-    margin-bottom: 100px;
+    font-size: 3rem;
+    padding: 0.5rem;
+    width: 24rem;
+    height: 6rem;
+    margin-bottom: 8rem;
+    border: none;
+    border-radius: 1rem;
+}
+
+#menuWrapper button, #menuButton button, #winBox button {
+    transition: transform 75ms ease-in-out;
+}
+
+#menuWrapper button:hover, #menuButton button:hover, #winBox button:hover {
+    transform: scale(1.1, 1.1);
 }
 
 
@@ -45,20 +81,26 @@ body {
 }
 
 
+
 #gameZone {
     display: grid;
     width: fit-content;
-    padding: 1em;
+    padding: 1em 3em 1em;
     grid-template-columns: 6em 6em 6em 6em 6em 6em 6em;
     grid-template-rows: 6em 6em 6em 6em 6em 6em;
     
+    margin-top: 1rem;
 
-    column-gap: 1em;
-    row-gap: 1em;
+    column-gap: 1rem;
+    row-gap: 1rem;
 
-    background-color: black;
+    background-color: #44B;
 
     color: #FFF0;
+/* 
+    padding-top: 3rem; */
+    border-top-left-radius: 3rem;
+    border-top-right-radius: 3rem;
 
 }
 
@@ -66,13 +108,14 @@ body {
     height: 100%;
     width: 100%;
     background-color: white;
+    border-radius: 50%;
 }
 
 #buttonRow {
     display: grid;
     grid-template-columns: 6em 6em 6em 6em 6em 6em 6em;
     column-gap: 1em;
-    padding: 0 1em;
+    padding: 0 3em;
     padding-bottom: 1em;
     height: 6rem;
 }
@@ -83,7 +126,7 @@ body {
     border-radius: 50%;
     height: 6rem;
     font-size: 300%;
-    /* background-color: #0000; */
+    background-color: #BBB;
     padding: 0;
 }
 
@@ -120,19 +163,8 @@ body {
 
 }
 
-/*
 
 
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
-
-
-fixa animation på slutskärm
-
-
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
-*/
 .red :only-child, .blue :only-child {
     height: 100%;
     width: 100%;
@@ -152,36 +184,17 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     background-color: yellow;
 }
 
-/*
-#winBox {
-    position: absolute;
-    left: calc(50% - 11em - 2px);
-    top: calc(86px + 17.6em);
-    width: calc(22em - 20px);
-    height: 12em;
-
-    background-color: #FFF;
-    border-color: #000;
-
-    border: 2px;
-    border-style: solid;
-    text-align: center;
-    padding: 10px;
-    border-radius: 1em;
-
-}
-*/
 
 #winBox {
     position: absolute;
     text-align: center;
-    width: calc(25rem - 4px);
-    border: 2px solid black;
-    border-radius: 1em;
-    background-color: #FFF;
+    width: calc(38rem - 4px);
+    /* border: 2px solid black; */
+    border-radius: 2rem;
+    background-color: #DDD;
 
     top: 6rem;
-    left: calc(50% - 12.5rem - 2px);
+    left: calc(50% - 19rem - 2px);
 
     animation-name: winBox-enter;
     animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -191,12 +204,20 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 #winBox button {
     font-size: 2rem;
     margin-top: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
+    
+
+    border-radius: 1rem;
+    border-color: #000;
+    padding: 0.5rem 1rem;
+
+
 }
 
 #winTitle {
-    font-size: 40pt;
-    margin-top: 10px;
+    font-size: 4rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 #winText {

@@ -91,26 +91,28 @@ function startGame(x) {
 function GameOver(winner) {
   console.log("GAAAAME OVER");
   gameOver = true;
-  let winTitle = winner.toUpperCase() + " won";
+  let winTitle = winner.toUpperCase() + "VANN";
   let winMessage = "";
   
   document.getElementById("buttonRow").className = "";
 
 
   if (winner == "tie") {
-    winMessage = "No one won, bruh"
-    winTitle = "TIE";
+    winMessage = "Ingen vann, bruh"
+    winTitle = "LIKA";
   } else {
-    winMessage = "Well done!";
-    winTitle = winner.toUpperCase() + " WON";
+    winMessage = "Bra gjort!";
+    if (winner == "red") winner = "röd";
+    if (winner == "blue") winner = "blå";
+    winTitle = winner.toUpperCase() + " VANN";
 
   }
 
   if (AI && winner == "blue") {
     winMessage = ":(";
-    winTitle = "YOU LOST";
+    winTitle = "DU FÖRLORADE";
   } else if (AI && winner == "red") {
-    winTitle = "YOU WON";
+    winTitle = "DU VANN";
   }
 
   document.getElementById("winTitle").innerHTML = winTitle;
@@ -126,7 +128,7 @@ function GameOver(winner) {
 }
 
 
-function endGame() {
+function EndGame() {
   gameWrapper.classList.add("animOut");
   // winBox.classList.add("animOut");
   winBox.classList.add("hidden");
@@ -136,8 +138,9 @@ function endGame() {
     gameWrapper.classList.add("hidden");
     gameWrapper.classList.remove("animOut");
     // winBox.classList.remove("animOut");
-    menuWrapper.classList.remove("hidden");
     menuWrapper.classList.add("animIn");
+
+    menuWrapper.classList.remove("hidden");
     setTimeout(() => {
       menuWrapper.classList.remove("animIn");
     }, 1050);
@@ -315,6 +318,8 @@ function HasWon(pos) {
     
     //om längden är 4 eller mer, dvs det finns 4 i rad någonstans, så kommer den kasta skiten i luften och säga att någon vann
     if (length >= 4) {
+      
+
       // gameOver = true;
       console.log("game over " + p + " won");
       
