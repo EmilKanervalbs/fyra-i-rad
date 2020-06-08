@@ -16,11 +16,45 @@
     </h1>
 
     <div id="menuWrapper">
-      <button onclick="startGame(1)"> 1 Spelare </button>
+      <button onclick="StartGame(1)"> 1 Spelare </button>
       <br>
-      <button onclick="startGame(2)"> 2 Spelare </button>
+      <button onclick="Multiplayer()"> 2 Spelare </button>
 
     </div>
+
+    <div id="multiplayerWrapper" class="hidden">
+      <button id="casual" onclick="StartGame(2)"> Casual </button>
+      <br>
+      <div id="bestOfDiv">
+        <button id="bestOf" onclick="StartMulti()"> Först till </button>
+        <input type="number" value="2" id="countInput" min="2" max="10">
+      </div>
+      
+
+      <div id="menuButton">
+        <button onclick="MainMenu()"> Huvudmeny </button>
+      </div>
+    </div>
+
+
+
+
+    <div id="multiplayerStats" class="hidden">
+      <b> Multiplayer </b>
+      <br>
+      <br>
+      <div id="goalDiv">
+        Först till: 
+      </div>
+      <div id="p1score">
+        Spelare 1: 0
+      </div>
+      <div id="p2score">
+        Spelare 2: 0
+      </div>
+    </div>
+
+
 
 
 
@@ -43,17 +77,36 @@
         <button onclick="EndGame()"> Huvudmeny </button>
       </div>
 
+
+
+
+
       <div id="winBox" class="hidden">
         <div id="winTitle">
           x
         </div>
         <div id="winText">
-          <!-- hejsan -->
 
         </div>
+        
       <br>
       <button onclick="EndGame()"> Huvudmeny </button> 
       </div>
+
+      <div id="roundOverBox" class="hidden">
+        <div id="winTitle2">
+          x
+        </div>
+        <div id="winText2">
+
+        </div>
+        
+      <br>
+      <button onclick="EndGame()"> Huvudmeny </button> 
+      <button onclick="ContinueMulti()" id="continueMultiButton"> Fortsätt </button> 
+      </div>
+
+
 
       
     </div>

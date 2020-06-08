@@ -6,9 +6,11 @@ var height = 6;
 var width = 7;
 
 
-const menu = document.getElementById("menuWrapper");
+const menuWrapper = document.getElementById("menuWrapper");
 const gameWrapper = document.getElementById("gameWrapper"); 
 const winBox = document.getElementById("winBox");
+const multiplayerWrapper = document.getElementById("multiplayerWrapper");
+const roundOverBox = document.getElementById("roundOverBox");
 
 
 
@@ -27,6 +29,30 @@ var AI = false; //om ai är på eller inte
 
 var AIblock = false; //om det är ai:ns tur eller inte
 
+var casual = true;
+
+var roundCount = 0;
+
+var p1Score = 0;
+var p2Score = 0;
+
+var goal = 0;
+
+
+const p1scoreDIV = document.getElementById("p1score");
+const p2scoreDIV = document.getElementById("p2score");
+
+
+
+//kvar:
+//sätta score på sidan och konstant uppdatera
+// checka om någon har vunnit
+
+/*
+setTimeout(() => {
+  Multiplayer();
+}, 50)
+*/
 
 
 //skapa spelområdet
@@ -53,16 +79,72 @@ function createGame() {
 
     turn = 0;
     gameOver = false;
-
-    document.getElementById("buttonRow").className = "redButton";
+    if (roundCount % 2 == 0) document.getElementById("buttonRow").className = "redButton";
+    else document.getElementById("buttonRow").className = "blueButton";
   }
 
   console.log("game elements created");
 }
 
 
+function Multiplayer() {
 
-function startGame(x) {
+  menuWrapper.classList.add("animOut");
+
+  setTimeout(() => {
+    multiplayerWrapper.classList.add("animIn");
+    multiplayerWrapper.classList.remove("hidden");
+    menuWrapper.classList.add("hidden");
+    menuWrapper.classList.remove("animOut");
+    setTimeout(() => {
+      multiplayerWrapper.classList.remove("animIn");
+  
+    }, 1050);
+  }, 950);
+
+}
+
+function StartMulti() {
+  casual = false;
+  goal = document.getElementById("countInput").value;
+  console.log(goal);
+
+  document.getElementById("goalDiv").innerHTML = "Först till " + goal;
+
+  setTimeout(() => {
+    document.getElementById("multiplayerStats").classList.remove("hidden");
+    document.getElementById("multiplayerStats").classList.add("animRight");
+
+    setTimeout(() => {
+    document.getElementById("multiplayerStats").classList.remove("animRight");
+    }, 1000);
+
+  },1000);
+  
+
+  StartGame(2);
+
+}
+
+
+function ContinueMulti() {
+  roundCount++;
+  roundOverBox.classList.add("hidden");
+
+  gameWrapper.classList.add("animOut");
+
+  setTimeout(() => {
+    gameWrapper.classList.add("hidden");
+    
+    gameWrapper.classList.remove("animOut");
+    StartGame(2);
+
+  }, 950);
+
+}
+
+
+function StartGame(x) {
   document.getElementById("gameZone").innerHTML = "";
   createGame();
 
@@ -72,14 +154,17 @@ function startGame(x) {
     AI = false;
   }
 
-  menu.classList.add("animOut");
+  menuWrapper.classList.add("animOut");
+  multiplayerWrapper.classList.add("animOut");
   
 
   setTimeout(() => {
     gameWrapper.classList.add("animIn");
     gameWrapper.classList.remove("hidden");
-    menu.classList.add("hidden");
-    menu.classList.remove("animOut");
+    menuWrapper.classList.add("hidden");
+    menuWrapper.classList.remove("animOut");
+    multiplayerWrapper.classList.add("hidden");
+    multiplayerWrapper.classList.remove("animOut");
     setTimeout(() => {
       gameWrapper.classList.remove("animIn");
   
@@ -93,6 +178,7 @@ function GameOver(winner) {
   gameOver = true;
   let winTitle = winner.toUpperCase() + "VANN";
   let winMessage = "";
+  let winnerSV = "";
   
   document.getElementById("buttonRow").className = "";
 
@@ -102,9 +188,9 @@ function GameOver(winner) {
     winTitle = "LIKA";
   } else {
     winMessage = "Bra gjort!";
-    if (winner == "red") winner = "röd";
-    if (winner == "blue") winner = "blå";
-    winTitle = winner.toUpperCase() + " VANN";
+    if (winner == "red") winnerSV = "röd";
+    if (winner == "blue") winnerSV = "blå";
+    winTitle = winnerSV.toUpperCase() + " VANN";
 
   }
 
@@ -127,11 +213,55 @@ function GameOver(winner) {
 
 }
 
+function MainMenu() {
+
+  casual = true;
+
+  multiplayerWrapper.classList.add("animOut");
+  // winBox.classList.add("animOut");
+  winBox.classList.add("hidden");
+
+
+  setTimeout(() => {
+    multiplayerWrapper.classList.add("hidden");
+    multiplayerWrapper.classList.remove("animOut");
+    // winBox.classList.remove("animOut");
+    menuWrapper.classList.add("animIn");
+
+    menuWrapper.classList.remove("hidden");
+    setTimeout(() => {
+      menuWrapper.classList.remove("animIn");
+    }, 1050);
+
+  }, 950);
+  
+}
 
 function EndGame() {
   gameWrapper.classList.add("animOut");
   // winBox.classList.add("animOut");
   winBox.classList.add("hidden");
+  roundOverBox.classList.add("hidden");
+
+  roundCount = 0;
+  p1Score = 0;
+  p2Score = 0;
+
+
+
+  document.getElementById("multiplayerStats").classList.add("animLeft");
+
+  setTimeout(() => {
+    document.getElementById("multiplayerStats").classList.add("hidden");
+    document.getElementById("multiplayerStats").classList.remove("animLeft");
+    p1scoreDIV.innerHTML= "Spelare 1: 0";
+    p2scoreDIV.innerHTML = "Spelare 2: 0";
+
+  }, 950);
+
+
+
+  casual = true;
 
 
   setTimeout(() => {
@@ -148,6 +278,64 @@ function EndGame() {
   }, 950);
   
 }
+
+
+function RoundEnd(winner) {
+
+  console.log("Round over");
+  gameOver = true;
+  let winTitle = winner.toUpperCase() + "VANN";
+  let winMessage = "";
+  
+  document.getElementById("buttonRow").className = "";
+
+
+
+  if (winner == "tie") {
+    winMessage = "Ingen vann, bruh"
+    winTitle = "LIKA";
+  } 
+  
+  else 
+  {
+    winMessage = "Bra gjort!";
+    if (winner == "red")
+    {
+      console.log("YEEETASTT");
+      p1Score++;
+      winTitle = "SPELARE 1 VANN";
+    }
+    else if (winner == "blue") 
+    {
+      p2Score++;
+      console.log("yayayayayaya");
+
+      winTitle = "SPELARE 2 VANN";
+    }
+  }
+
+  if (p1Score == goal || p2Score == goal) {
+    document.getElementById("continueMultiButton").classList.add("hidden");
+  }
+
+  p1scoreDIV.innerHTML = "Spelare 1: " + p1Score;
+  p2scoreDIV.innerHTML = "Spelare 2: " + p2Score
+  /*
+  if (AI && winner == "blue") {
+    winMessage = ":(";
+    winTitle = "DU FÖRLORADE";
+  } else if (AI && winner == "red") {
+    winTitle = "DU VANN";
+  }
+*/
+  document.getElementById("winTitle2").innerHTML = winTitle;
+  document.getElementById("winText2").innerHTML = winMessage;
+
+  setTimeout(() => {
+    roundOverBox.classList.remove("hidden");
+  }, 1000);
+}
+
 
 
 function play(column) {
@@ -174,11 +362,11 @@ function play(column) {
     if (document.getElementsByClassName("gameSquare")[pos].className == "gameSquare") 
     {
       //turn % 2 == 0 är spelare 1 eller röd och % 2 = 1 är spelare 2 är blå
-      if (turn % 2 == 0) 
+      if ((turn + roundCount % 2) % 2 == 0) 
       {
       document.getElementsByClassName("gameSquare")[pos].classList.add("red");
       } 
-      else if (turn % 2 == 1) {
+      else if ((turn + roundCount % 2) % 2 == 1) {
         document.getElementsByClassName("gameSquare")[pos].classList.add("blue");
       }
 
@@ -195,7 +383,11 @@ function play(column) {
       if (turn == document.getElementsByClassName("gameSquare").length) 
       {
         // gameOver = true;
-        GameOver("tie");
+        if (casual) {
+          GameOver("tie");
+        } else {
+          RoundEnd("tie");
+        }
         console.log("issa tie bruh");
         //document.getElementById("longest").innerHTML = "ingen vann, game over";
       }
@@ -211,7 +403,7 @@ function play(column) {
 
   if (gameOver) return;
 
-  if (turn % 2 == 0) {
+  if ((turn + roundCount % 2) % 2 == 0) {
     document.getElementById("buttonRow").className = "redButton";
   } else {
     document.getElementById("buttonRow").className = "blueButton";
@@ -245,7 +437,7 @@ function HasWon(pos) {
   //tom variabel
   let p = "";
 
-  if (turn % 2 == 0) {
+  if ((turn + roundCount % 2) % 2  == 0) {
     p = "red";
   } else {
     p = "blue";
@@ -323,7 +515,11 @@ function HasWon(pos) {
       // gameOver = true;
       console.log("game over " + p + " won");
       
-      GameOver(p);
+      if (casual) {
+        GameOver(p);
+      } else {
+        RoundEnd(p);
+      }
 
       break;
       
@@ -363,7 +559,7 @@ function ai() {
   let longestcol = 0; //variabel för den kolumn med längst streak
   let longestcolx = 0; //variabel för längden i longestcol
 
-  if (turn % 2 == 0) {
+  if ((turn + roundCount % 2 ) % 2 == 0) {
     p = "red";
     n = "blue";
   } else {
